@@ -3,6 +3,9 @@ import { Platform, Pressable, StatusBar, StyleSheet, Text, View } from "react-na
 import { Icon } from "./src/icons";
 import { C, R, S, T } from "./src/theme";
 import Splash from "./src/Splash";
+import Onboarding from "./src/Onboarding";
+import Creator from "./src/Creator";
+import { DEFAULT_CHARACTER } from "./src/avatar";
 import { CardScreen, SlipScreen, ProfileScreen } from "./src/screens";
 import card from "./data/event.json";
 
@@ -14,6 +17,11 @@ const TABS = [
 
 export default function App() {
   const [splash, setSplash] = useState(true);
+  // Shown once on first open. Once there are accounts this becomes a stored
+  // flag rather than component state.
+  const [onboard, setOnboard] = useState(true);
+  const [creator, setCreator] = useState(false);
+  const [character, setCharacter] = useState(DEFAULT_CHARACTER);
   const [tab, setTab] = useState("card");
   // Picks live here so they survive moving between tabs. Next job is making
   // them survive closing the app, which means accounts and a backend.
@@ -25,7 +33,10 @@ export default function App() {
 
       {tab === "card" && <CardScreen card={card} picks={picks} setPicks={setPicks} />}
       {tab === "slip" && <SlipScreen card={card} picks={picks} />}
-      {tab === "me" && <ProfileScreen card={card} picks={picks} />}
+      {tab === "me" && (
+        <ProfileScreen card={card} picks={picks} character={character}
+          onEdit={() => setCreator(true)} />
+      )}
 
       <View style={st.tabs}>
         <View style={st.tabRow}>
@@ -41,6 +52,11 @@ export default function App() {
         </View>
       </View>
 
+      {creator && (
+        <Creator character={character} setCharacter={setCharacter}
+          onDone={() => setCreator(false)} />
+      )}
+      {!splash && onboard && <Onboarding onDone={() => setOnboard(false)} />}
       {splash && <Splash onDone={() => setSplash(false)} />}
     </View>
   );

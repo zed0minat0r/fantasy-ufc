@@ -1,4 +1,6 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SvgXml } from "react-native-svg";
+import { avatarSvg } from "./avatar";
 import { LinearGradient } from "expo-linear-gradient";
 import { C, R, S, T } from "./theme";
 import { Bout, Label, SegmentHead, fmtLine } from "./components";
@@ -135,7 +137,7 @@ export function SlipScreen({ card, picks }) {
 
 /* ---------------------------------------------------------------- profile */
 
-export function ProfileScreen({ card, picks }) {
+export function ProfileScreen({ card, picks, character, onEdit }) {
   const onTheLine = potentialCard(picks, card.bouts);
   const stats = [
     { k: "Points banked", v: "0", note: "after your first card" },
@@ -146,15 +148,16 @@ export function ProfileScreen({ card, picks }) {
     <Page>
       <LinearGradient
         colors={["rgba(139,92,246,0.24)", "transparent"]}
-        start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={st.header}
+        start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={[st.header, { alignItems: "center" }]}
       >
         <View style={st.avatar}>
-          <LinearGradient colors={[C.purple, C.teal]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-            style={StyleSheet.absoluteFill} />
-          <Text style={{ fontSize: 26, fontWeight: "900", color: C.bg }}>M</Text>
+          {character ? <SvgXml xml={avatarSvg(character, 104)} width={104} height={104} /> : null}
         </View>
         <Text style={[T.title, { color: C.white, marginTop: S.md }]}>Your fighter</Text>
         <Text style={[T.small, { color: C.muted, marginTop: 2 }]}>Level 1 · Rookie</Text>
+        <Pressable onPress={onEdit} style={st.edit}>
+          <Text style={[T.small, { color: C.teal }]}>Customise</Text>
+        </Pressable>
       </LinearGradient>
 
       <View style={st.statRow}>
@@ -193,7 +196,14 @@ const st = StyleSheet.create({
   },
   slipShot: { width: 42, height: 42, borderRadius: 21, backgroundColor: C.surfaceHi },
 
-  avatar: { width: 76, height: 76, borderRadius: 26, alignItems: "center", justifyContent: "center", overflow: "hidden" },
+  avatar: {
+    width: 116, height: 116, borderRadius: 26, alignItems: "center", justifyContent: "center",
+    overflow: "hidden", backgroundColor: C.surface, borderWidth: 1, borderColor: C.lineHi,
+  },
+  edit: {
+    marginTop: S.md, paddingHorizontal: S.lg, paddingVertical: S.sm,
+    borderRadius: R.pill, borderWidth: 1, borderColor: C.teal,
+  },
   statRow: { flexDirection: "row", marginHorizontal: S.lg, marginTop: S.lg, gap: S.sm },
   stat: {
     flex: 1, alignItems: "center", paddingVertical: S.lg, backgroundColor: C.surface,
