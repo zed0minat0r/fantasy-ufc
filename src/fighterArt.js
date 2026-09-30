@@ -150,35 +150,64 @@ const face = (brow, skin) => {
  *  style sat wrong and only the bald head looked right. They all trace the same
  *  dome now: M80 46 q0-30 30-30 t30 30.
  */
-/** The skull is  M80 44 q0-28 30-28 t30 28 . Every hair dome traces that curve
- *  3 units OUTSIDE it, from one shared constant.
+/** Haircuts.
  *
- *  Matching the skull exactly is not good enough: the two quadratics share a
- *  control point, so the head's wins by about a unit the whole way round and
- *  prints a skin-coloured rim along the top of the hair. Matt: "you can see the
- *  tops of fighters heads through the hair." Measured at 20x on a crown crop -
- *  buzz, topknot and long all had it, crop did not, and crop was the only one
- *  whose dome happened to sit wider.
+ *  The skull is  M80 44 q0-28 30-28 t30 28 . Hair is drawn OUTSIDE that: match
+ *  it exactly and the head's curve wins by about a unit and prints a skin rim
+ *  along the top ("you can see the tops of fighters heads through the hair").
+ *
+ *  Each cut gets its OWN silhouette. The version before this was one dome with
+ *  a different bottom edge five times over, which is why they all read as the
+ *  same brown swim cap. What separates real haircuts is the outline - how far
+ *  the mass sits off the skull and where - not the trim.
+ *
+ *    buzz    tight to the skull, low straight hairline
+ *    crop    height on top, tight at the sides, a hard part
+ *    slick   pulled back: high hairline, nothing on the forehead
+ *    afro    a mass well outside the skull in every direction
+ *    long    tight on top, weight hanging behind the head
+ *
+ *  And the hairline sits ABOVE the brow at the temples. It used to run down to
+ *  y55, below eye level, which is what made every cut look pulled on.
  */
-const DOME = "M77 46q0-33 33-33t33 33";
+const DOME = "M77 46q0-33 33-33t33 33";           // tight to the skull
+const TALL = "M77 48q2-40 33-40t33 40";           // volume on top, sides tight
+
+/** A highlight crescent near the crown, following the dome it sits on. One flat
+ *  fill is a sticker. It has to stay WELL inside the mass - drawn near the edge
+ *  it reads as a scratch rather than a sheen. */
+const sheen = (c, d = "M87 30q17-14 37-7") =>
+  `<path d="${d}" stroke="#${shade(c, 1.5)}" stroke-width="6" fill="none" stroke-linecap="round" opacity=".16"/>`;
 
 export const HAIRCUTS = {
   shaved: () => "",
 
-  buzz: (c) => `<path d="${DOME}v9q-9-17-33-17t-33 17z" fill="#${c}"/>`,
+  buzz: (c) => `<path d="${DOME}v4q-6-10-15-13-18-5-36 0-9 3-15 13z" fill="#${c}"/>
+                ${sheen(c)}`,
 
-  crop: (c) => `<path d="${DOME}v11q-9-20-33-20t-33 20z" fill="#${c}"/>
-                <path d="M96 18q10 9 28 11" stroke="#${shade(c, 0.66)}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55"/>`,
+  // The part is a shadow INSIDE the mass. Drawn as a line on top it read as a
+  // worm sitting on the hair, and it overhung the silhouette on the left.
+  crop: (c) => `<path d="${TALL}v3q-5-12-15-15-17-6-36 0-10 3-15 15z" fill="#${c}"/>
+                <path d="M105 22q10 8 21 9" stroke="#${shade(c, 0.62)}" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                ${sheen(c, "M86 26q15-12 31-5")}`,
 
-  topknot: (c) => `<path d="${DOME}v7q-9-15-33-15t-33 15z" fill="#${c}"/>
-                   <path d="M104 14q6-4 12 0v6h-12z" fill="#${c}"/>
-                   <circle cx="110" cy="10" r="10" fill="#${c}"/>`,
+  slick: (c) => `<path d="${DOME}v2q-8-14-33-14t-33 14z" fill="#${c}"/>
+                 ${sheen(c, "M84 30q22-16 48-8")}`,
 
-  // The falls go BEHIND the head (see `.back`), which is the only way they read
-  // as hair. Drawn in front they sit on the cheeks and squeeze the face into a
-  // slot - two passes of that looked like curtains, not a fighter.
-  long: (c) => `<path d="${DOME}v6q-9-16-33-16t-33 16z" fill="#${c}"/>`,
+  // A real circle with the face cut out of it, not a dome with straight sides -
+  // the dome version read as a bowl cut.
+  afro: (c) => `<path d="M110 0a44 44 0 0 1 44 44 44 44 0 0 1-20 37q8-28-2-45-22 3-44 0-10 17-2 45a44 44 0 0 1-20-37 44 44 0 0 1 44-44z" fill="#${c}"/>
+                ${sheen(c, "M80 26q22-18 48-8")}`,
+
+  // The weight goes BEHIND the head (see `.back`). Drawn in front it sits on
+  // the cheeks and squeezes the face into a slot - that read as curtains.
+  long: (c) => `<path d="${DOME}v8q-5-13-16-17-18-5-36 0-11 4-16 17z" fill="#${c}"/>
+                ${sheen(c, "M86 28q18-14 38-6")}`,
 };
+
+HAIRCUTS.slick.back = (c) => `
+  <path d="M100 18q10-5 20 0v10h-20z" fill="#${shade(c, 0.86)}"/>
+  <circle cx="110" cy="14" r="11" fill="#${c}"/>`;
 
 /** Layers that belong BEHIND the head. A haircut with hanging length has to be
  *  drawn before the skull or it covers the face; everything else has none. */
