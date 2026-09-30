@@ -3,9 +3,9 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { LinearGradient } from "expo-linear-gradient";
 import { C, R, S, T } from "./theme";
-import { PARTS, SWATCHES, avatarSvg, randomCharacter } from "./avatar";
+import { BALD, PARTS, SWATCHES, avatarSvg, randomCharacter } from "./avatar";
 
-const LABELS = { skinColor: "Skin", hairColor: "Hair colour", clothingColor: "Kit colour", eyesColor: "Eyes colour" };
+const LABELS = { skinColor: "Skin", hairColor: "Hair colour", clothesColor: "Kit colour" };
 
 /** Steppers rather than a grid of thumbnails. 45 hairstyles as a scrolling wall
  *  of previews means generating 45 avatars to draw one screen; arrows change one
@@ -23,7 +23,7 @@ function PartRow({ part, value, onChange }) {
       onChange(list[(idx + d + list.length) % list.length]);
     }
   };
-  const shown = value ? `${idx + 1} of ${list.length}` : "None";
+  const shown = value === BALD ? "Shaved" : value ? `${idx + 1} of ${list.length}` : "None";
   return (
     <View style={st.row}>
       <Text style={[T.small, { color: C.text, width: 78 }]}>{part.label}</Text>
@@ -68,7 +68,7 @@ export default function Creator({ character, setCharacter, onDone }) {
           start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={st.head}
         >
           <Text style={[T.label, { color: C.faint }]}>Your fighter</Text>
-          <Text style={[T.hero, { color: C.white, marginTop: S.xs }]}>Make them yours</Text>
+          <Text style={[T.hero, { color: C.white, marginTop: S.xs }]}>Build your fighter</Text>
 
           <View style={st.plinth}>
             <SvgXml xml={svg} width={168} height={168} />

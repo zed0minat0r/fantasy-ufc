@@ -1,75 +1,117 @@
 import { createAvatar } from "@dicebear/core";
-import { pixelArt } from "@dicebear/collection";
+import { toonHead } from "@dicebear/collection";
 
 /** The character.
  *
- *  DiceBear's Pixel Art set, generated locally - no network call, ~1.6KB of SVG
- *  per character, and CC0 so there is no attribution to honour and nothing to
- *  renegotiate if the app ever charges. Chosen over drawing a sprite sheet
- *  because a character is then a handful of choices rather than a pile of
- *  images, and the parts can be swapped for custom-drawn ones later without the
- *  rest of the app noticing.
+ *  DiceBear's toonHead, CURATED. Matt picked the style, then: "we shouldn't
+ *  just have random people in there, they should only be able to choose people
+ *  that look like fighters." So the option lists below are deliberately shorter
+ *  than what the set ships - a shirt, a dress and a sad mouth are all available
+ *  and all wrong for someone about to fight. Everything left in reads as a
+ *  fighter, so there is no way to build an accountant.
+ *
+ *  Generated locally: no network call, CC0 art, ~2KB a character. avatar.js is
+ *  the only file that knows where the parts come from, so this can be replaced
+ *  with commissioned art later without touching the rest of the app.
  */
 
-const opt = (k) => pixelArt.schema.properties[k]?.items?.enum ?? pixelArt.schema.properties[k]?.enum ?? [];
+const all = (k) => toonHead.schema.properties[k]?.items?.enum ?? [];
+const only = (k, keep) => all(k).filter((v) => keep.includes(v));
 
-/** Only the parts worth putting in front of someone. The set also ships
- *  probabilities and background options that would just be noise here. */
+/** A shaved head is as much a fighter look as any hairstyle, so "none" is a
+ *  first-class option rather than an accident of probability. */
+export const BALD = "__bald";
+
 export const PARTS = [
-  { key: "hair", label: "Hair", options: opt("hair") },
-  { key: "eyes", label: "Eyes", options: opt("eyes") },
-  { key: "mouth", label: "Mouth", options: opt("mouth") },
-  { key: "beard", label: "Beard", options: opt("beard"), optional: true },
-  { key: "glasses", label: "Glasses", options: opt("glasses"), optional: true },
-  { key: "hat", label: "Hat", options: opt("hat"), optional: true },
-  { key: "clothing", label: "Kit", options: opt("clothing") },
+  {
+    key: "hair", label: "Hair",
+    // every cut here is short or tied back - nothing that would last a round
+    options: [BALD, ...only("hair", ["undercut", "spiky", "sideComed", "bun"])],
+  },
+  {
+    key: "rearHair", label: "Back", optional: true,
+    options: only("rearHair", ["neckHigh", "shoulderHigh", "longStraight"]),
+  },
+  {
+    key: "beard", label: "Beard", optional: true,
+    options: only("beard", ["chin", "fullBeard", "chinMoustache", "longBeard"]),
+  },
+  {
+    key: "eyebrows", label: "Brow",
+    // no "happy" and no "sad": one is a birthday party, the other is a loss
+    options: only("eyebrows", ["angry", "neutral", "raised"]),
+  },
+  {
+    key: "eyes", label: "Eyes",
+    options: only("eyes", ["wide", "humble", "happy"]),
+  },
+  {
+    key: "mouth", label: "Mouth",
+    options: only("mouth", ["angry", "smile", "agape", "laugh"]),
+  },
+  {
+    key: "clothes", label: "Kit",
+    // dress and shirt are out - this is a walkout, not a wedding
+    options: only("clothes", ["tShirt", "turtleNeck", "openJacket"]),
+  },
 ];
 
 export const SWATCHES = {
   skinColor: ["8d5524", "a26d3d", "b68655", "cb9e6e", "e0b188", "f5cfa0", "ffdbac"],
-  hairColor: ["000000", "2c1b18", "603015", "89523d", "a55728", "b58143", "d6b370", "e8e1e1", "cb6820", "6a4e35"],
-  clothingColor: ["8b5cf6", "2dd4bf", "e11d48", "f59e0b", "22c55e", "3b82f6", "e5e7eb", "1f2937"],
-  eyesColor: ["647b90", "5b7c8d", "76778b", "697b94", "4b5563", "2c1b18"],
+  // Natural, plus the bleach blonde a lot of fighters actually walk out with.
+  // Purple and teal were in here and a teal BEARD is a joke, not a fighter.
+  hairColor: ["0e0e0e", "2c1b18", "603015", "89523d", "a55728", "b58143", "d6b370", "e8e1e1", "f2e3c0"],
+  clothesColor: ["8b5cf6", "2dd4bf", "e11d48", "111827", "f59e0b", "22c55e", "3b82f6", "e5e7eb"],
 };
 
 export const DEFAULT_CHARACTER = {
   seed: "fighter",
-  hair: opt("hair")[10] ?? opt("hair")[0],
-  eyes: opt("eyes")[3] ?? opt("eyes")[0],
-  mouth: opt("mouth")[12] ?? opt("mouth")[0],
-  beard: null,
-  glasses: null,
-  hat: null,
-  clothing: opt("clothing")[4] ?? opt("clothing")[0],
+  hair: "undercut",
+  rearHair: null,
+  beard: "chin",
+  eyebrows: "angry",
+  eyes: "wide",
+  mouth: "angry",
+  clothes: "tShirt",
   skinColor: SWATCHES.skinColor[3],
-  hairColor: SWATCHES.hairColor[2],
-  clothingColor: SWATCHES.clothingColor[0],
-  eyesColor: SWATCHES.eyesColor[0],
+  hairColor: SWATCHES.hairColor[1],
+  clothesColor: SWATCHES.clothesColor[0],
 };
 
-/** DiceBear takes arrays and picks from them; give it one value and it is
- *  deterministic, which is what "this is MY character" requires. A null part
- *  means "none", which the set expresses as a 0% probability. */
+/** DiceBear picks randomly from whatever arrays it is given, so passing exactly
+ *  one value per part is what makes a character yours rather than a roll. */
 export function avatarSvg(ch, size = 160) {
-  const o = { seed: ch.seed ?? "fighter", size, scale: 92 };
-  for (const p of PARTS) {
-    if (ch[p.key]) o[p.key] = [ch[p.key]];
-    else if (p.optional) o[`${p.key}Probability`] = 0;
+  const o = { seed: ch.seed ?? "fighter", size, scale: 100 };
+
+  if (ch.hair && ch.hair !== BALD) { o.hair = [ch.hair]; o.hairProbability = 100; }
+  else o.hairProbability = 0;
+
+  for (const key of ["rearHair", "beard"]) {
+    if (ch[key]) { o[key] = [ch[key]]; o[`${key}Probability`] = 100; }
+    else o[`${key}Probability`] = 0;
   }
-  for (const k of ["skinColor", "hairColor", "clothingColor", "eyesColor"]) {
-    if (ch[k]) o[k] = [ch[k]];
+  for (const key of ["eyebrows", "eyes", "mouth", "clothes"]) {
+    if (ch[key]) o[key] = [ch[key]];
   }
-  for (const p of PARTS) if (ch[p.key] && p.optional) o[`${p.key}Probability`] = 100;
-  return createAvatar(pixelArt, o).toString();
+  for (const key of ["skinColor", "hairColor", "clothesColor"]) {
+    if (ch[key]) o[key] = [ch[key]];
+  }
+  return createAvatar(toonHead, o).toString();
 }
 
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
 
+/** Weighted so a shuffle produces someone who looks like they fight: a hard
+ *  brow most of the time, a beard more often than not, long hair rarely. */
 export function randomCharacter() {
   const ch = { seed: String(Math.random()).slice(2, 9) };
-  for (const p of PARTS) {
-    ch[p.key] = p.optional && Math.random() < 0.55 ? null : pick(p.options);
-  }
+  ch.hair = pick(PARTS[0].options);
+  ch.rearHair = Math.random() < 0.25 ? pick(PARTS[1].options) : null;
+  ch.beard = Math.random() < 0.6 ? pick(PARTS[2].options) : null;
+  ch.eyebrows = Math.random() < 0.7 ? "angry" : pick(PARTS[3].options);
+  ch.eyes = pick(PARTS[4].options);
+  ch.mouth = Math.random() < 0.55 ? "angry" : pick(PARTS[5].options);
+  ch.clothes = pick(PARTS[6].options);
   for (const k of Object.keys(SWATCHES)) ch[k] = pick(SWATCHES[k]);
   return ch;
 }
