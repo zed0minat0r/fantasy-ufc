@@ -50,11 +50,41 @@ async function fighter(competitor) {
   };
 }
 
-async function bout(c) {
-  const [competitors, status] = await Promise.all([
+/** DraftKings moneyline per fighter, via ESPN. This is what prices a pick:
+ *  backing a +455 underdog has to be worth more than a -625 favourite.
+ *  ESPN publishes the WINNER market and a rounds over/under and nothing else -
+ *  there are no method-of-victory props in any free feed, so the method
+ *  multiplier in src/scoring.js is our number, not the market's. */
+async function odds(eventId, competitionId) {
+  try {
+    const list = await get(`${BASE}/events/${eventId}/competitions/${competitionId}/odds?lang=en&region=us`);
+    const first = (list.items ?? [])[0];
+    if (!first) return {};
+    const o = first.$ref ? await get(first.$ref) : first;
+    const out = {};
+    for (const side of ["awayAthleteOdds", "homeAthleteOdds"]) {
+      const a = o[side];
+      if (!a || a.moneyLine == null) continue;
+      const athlete = await deref(a.athlete).catch(() => null);
+      if (athlete?.id) out[athlete.id] = { moneyLine: a.moneyLine, favorite: !!a.favorite };
+    }
+    return out;
+  } catch {
+    return {};                       // a card with no market yet is normal, not an error
+  }
+}
+
+async function bout(c, eventId) {
+  const [competitors, status, lines] = await Promise.all([
     Promise.all((c.competitors ?? []).map(fighter)),
     deref(c.status).catch(() => null),
+    odds(eventId, c.id),
   ]);
+  for (const f of competitors) {
+    const l = lines[f.id];
+    f.moneyLine = l?.moneyLine ?? null;
+    f.favorite = l?.favorite ?? null;
+  }
   const result = status?.result ?? null;
   return {
     id: c.id,
@@ -86,7 +116,7 @@ const main = async () => {
 
   if (!pick) throw new Error("no event found - has the ESPN endpoint changed?");
 
-  const bouts = await Promise.all((pick.e.competitions ?? []).map(bout));
+  const bouts = await Promise.all((pick.e.competitions ?? []).map((c) => bout(c, pick.e.id)));
   const card = {
     id: pick.e.id,
     name: pick.e.name,
@@ -101,8 +131,11 @@ const main = async () => {
   if (!card.bouts.length) throw new Error("card has no bouts - refusing to write an empty file");
   writeFileSync(new URL("../data/event.json", import.meta.url), JSON.stringify(card, null, 1));
   console.log(`${card.name}  ${card.date}  ->  ${card.bouts.length} bouts`);
+  const priced = card.bouts.filter((b) => b.fighters.some((f) => f.moneyLine != null)).length;
+  console.log(`   ${priced}/${card.bouts.length} bouts have a moneyline`);
   card.bouts.slice(0, 3).forEach((b) =>
-    console.log(`   ${b.weight ?? "?"}: ${b.fighters.map((f) => f.name).join("  vs  ")}`));
+    console.log(`   ${b.weight ?? "?"}: ${b.fighters.map((f) =>
+      `${f.name}${f.moneyLine != null ? ` (${f.moneyLine > 0 ? "+" : ""}${f.moneyLine})` : ""}`).join("  vs  ")}`));
 };
 
 main().catch((e) => { console.error("FAILED:", e.message); process.exit(1); });

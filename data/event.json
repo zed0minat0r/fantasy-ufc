@@ -4,7 +4,7 @@
  "shortName": "UFC 332",
  "date": "2026-10-03T20:00Z",
  "venue": null,
- "fetchedAt": "2026-09-30T01:05:46.729Z",
+ "fetchedAt": "2026-09-30T01:14:45.006Z",
  "bouts": [
   {
    "id": "401912278",
@@ -18,7 +18,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4054605.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
      "record": "20-5-1",
-     "winner": false
+     "winner": false,
+     "moneyLine": -205,
+     "favorite": true
     },
     {
      "id": "4215200",
@@ -28,7 +30,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4215200.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/chn.png",
      "record": "10-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 170,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -50,7 +54,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4189320.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
      "record": "25-7-1",
-     "winner": false
+     "winner": false,
+     "moneyLine": 455,
+     "favorite": false
     },
     {
      "id": "5144008",
@@ -60,7 +66,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5144008.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "11-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -625,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -82,7 +90,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2502364.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "36-17-1",
-     "winner": false
+     "winner": false,
+     "moneyLine": 200,
+     "favorite": false
     },
     {
      "id": "5074131",
@@ -92,7 +102,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/arg.png",
      "record": "16-3-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -245,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -114,7 +126,9 @@
      "headshot": null,
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/cro.png",
      "record": "21-4-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -298,
+     "favorite": true
     },
     {
      "id": "4612580",
@@ -124,7 +138,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4612580.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "16-5-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 240,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -146,7 +162,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4300149.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
      "record": "15-5-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 170,
+     "favorite": false
     },
     {
      "id": "5218421",
@@ -156,7 +174,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5218421.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/cmr.png",
      "record": "11-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -205,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -178,7 +198,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5099732.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "13-3-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 136,
+     "favorite": false
     },
     {
      "id": "5289578",
@@ -188,7 +210,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5289578.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png",
      "record": "7-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -162,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -210,7 +234,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5211225.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
      "record": "10-5-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 425,
+     "favorite": false
     },
     {
      "id": "5292022",
@@ -220,7 +246,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5292022.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/aru.png",
      "record": "10-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -550,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -242,7 +270,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4895760.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "11-2-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -148,
+     "favorite": true
     },
     {
      "id": "5080883",
@@ -252,7 +282,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5080883.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/alb.png",
      "record": "13-3-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 124,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -274,7 +306,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/3128853.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "8-0-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -550,
+     "favorite": true
     },
     {
      "id": "5450121",
@@ -284,7 +318,9 @@
      "headshot": null,
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "6-0-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 410,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -306,7 +342,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/3146944.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
      "record": "22-10-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -135,
+     "favorite": true
     },
     {
      "id": "5060505",
@@ -316,7 +354,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5060505.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/eng.png",
      "record": "10-1-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 114,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -338,7 +378,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2335687.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
      "record": "32-17-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 230,
+     "favorite": false
     },
     {
      "id": "4018757",
@@ -348,7 +390,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4018757.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "18-9-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -285,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -370,7 +414,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5149961.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "12-0-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -1000,
+     "favorite": true
     },
     {
      "id": "5311402",
@@ -380,7 +426,9 @@
      "headshot": null,
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "8-2-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 650,
+     "favorite": false
     }
    ],
    "finished": false,
@@ -402,7 +450,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4001851.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/ita.png",
      "record": "19-10-1",
-     "winner": false
+     "winner": false,
+     "moneyLine": 120,
+     "favorite": false
     },
     {
      "id": "4412813",
@@ -412,7 +462,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4412813.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/mar.png",
      "record": "25-8-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -142,
+     "favorite": true
     }
    ],
    "finished": false,
@@ -434,7 +486,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2504639.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "23-14-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": 215,
+     "favorite": false
     },
     {
      "id": "5290958",
@@ -444,7 +498,9 @@
      "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5290958.png",
      "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
      "record": "8-5-0",
-     "winner": false
+     "winner": false,
+     "moneyLine": -258,
+     "favorite": true
     }
    ],
    "finished": false,
