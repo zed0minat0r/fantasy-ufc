@@ -43,11 +43,16 @@ export const PARTS = [
   },
   {
     key: "eyes", label: "Eyes",
+    // "wide" is the only open-eyed option in the set. The rest are closed and
+    // read as serene, which is not the look of someone about to fight.
     options: only("eyes", ["wide", "humble", "happy"]),
   },
   {
     key: "mouth", label: "Mouth",
-    options: only("mouth", ["angry", "smile", "agape", "laugh"]),
+    // agape is an O of surprise and laugh is a belly laugh - Matt: "the facial
+    // expressions are ridiculous". Both gone. What is left is a flat mouth and
+    // a gritted one.
+    options: only("mouth", ["smile", "angry"]),
   },
   {
     key: "clothes", label: "Kit",
@@ -64,14 +69,17 @@ export const SWATCHES = {
   clothesColor: ["8b5cf6", "2dd4bf", "e11d48", "111827", "f59e0b", "22c55e", "3b82f6", "e5e7eb"],
 };
 
+/** Straight face by default. In this set "smile" is a closed, flat mouth rather
+ *  than a grin - it is the neutral one - and neutral brows with open eyes is as
+ *  close to deadpan as the art gets. */
 export const DEFAULT_CHARACTER = {
   seed: "fighter",
   hair: "undercut",
   rearHair: null,
   beard: "chin",
-  eyebrows: "angry",
+  eyebrows: "neutral",
   eyes: "wide",
-  mouth: "angry",
+  mouth: "smile",
   clothes: "tShirt",
   skinColor: SWATCHES.skinColor[3],
   hairColor: SWATCHES.hairColor[1],
@@ -108,9 +116,11 @@ export function randomCharacter() {
   ch.hair = pick(PARTS[0].options);
   ch.rearHair = Math.random() < 0.25 ? pick(PARTS[1].options) : null;
   ch.beard = Math.random() < 0.6 ? pick(PARTS[2].options) : null;
-  ch.eyebrows = Math.random() < 0.7 ? "angry" : pick(PARTS[3].options);
-  ch.eyes = pick(PARTS[4].options);
-  ch.mouth = Math.random() < 0.55 ? "angry" : pick(PARTS[5].options);
+  // Lean neutral rather than gurning: a shuffled fighter should look composed,
+  // with the odd hard stare, not a cartoon.
+  ch.eyebrows = Math.random() < 0.55 ? "neutral" : pick(PARTS[3].options);
+  ch.eyes = Math.random() < 0.7 ? "wide" : pick(PARTS[4].options);
+  ch.mouth = Math.random() < 0.7 ? "smile" : "angry";
   ch.clothes = pick(PARTS[6].options);
   for (const k of Object.keys(SWATCHES)) ch[k] = pick(SWATCHES[k]);
   return ch;
