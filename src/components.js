@@ -85,6 +85,24 @@ export function Methods({ fighter, value, onChange }) {
   );
 }
 
+/** Section header for a card segment. Shows when that part starts and how many
+ *  of its fights are picked, so progress is legible per segment rather than one
+ *  number for fourteen fights. */
+export function SegmentHead({ title, startsAt, made, total }) {
+  const t = startsAt
+    ? new Date(startsAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+    : null;
+  return (
+    <View style={st.segment}>
+      <View style={st.segDot} />
+      <Text style={[T.label, { color: C.text }]}>{title}</Text>
+      <View style={{ flex: 1 }} />
+      {t ? <Text style={[T.tiny, { color: C.faint, marginRight: S.sm }]}>{t}</Text> : null}
+      <Text style={[T.tiny, { color: made === total ? C.teal : C.faint }]}>{made}/{total}</Text>
+    </View>
+  );
+}
+
 export function Bout({ bout, index, pick, setPick }) {
   const [a, b] = bout.fighters;
   const main = index === 0;
@@ -119,36 +137,43 @@ export function Bout({ bout, index, pick, setPick }) {
 }
 
 const st = StyleSheet.create({
+  segment: {
+    flexDirection: "row", alignItems: "center",
+    marginTop: S.xl, marginBottom: S.xs, marginHorizontal: S.lg,
+    paddingBottom: S.sm, borderBottomWidth: 1, borderBottomColor: C.line,
+  },
+  segDot: { width: 4, height: 14, borderRadius: 2, backgroundColor: C.purple, marginRight: S.sm },
+
   bout: {
-    marginHorizontal: S.lg, marginTop: S.md, padding: S.md,
+    marginHorizontal: S.lg, marginTop: S.sm, padding: S.md,
     backgroundColor: C.surface, borderRadius: R.lg, borderWidth: 1, borderColor: C.line,
   },
   boutMain: { borderColor: "rgba(45,212,191,0.28)", backgroundColor: C.surfaceHi },
-  boutHead: { flexDirection: "row", alignItems: "center", marginBottom: S.md },
+  boutHead: { flexDirection: "row", alignItems: "center", marginBottom: S.sm },
   mainTag: { marginLeft: S.sm, paddingHorizontal: S.sm, paddingVertical: 3, borderRadius: R.pill, backgroundColor: C.tealDim },
 
   row: { flexDirection: "row", alignItems: "stretch" },
   vsWrap: { width: 30, alignItems: "center", justifyContent: "center" },
 
   fighter: {
-    flex: 1, alignItems: "center", paddingVertical: S.md, paddingHorizontal: S.sm,
+    flex: 1, alignItems: "center", paddingVertical: S.sm, paddingHorizontal: S.sm,
     borderRadius: R.md, borderWidth: 1, borderColor: C.line,
     backgroundColor: "rgba(255,255,255,0.02)", overflow: "hidden",
   },
   fighterOn: { borderColor: C.purpleHi, backgroundColor: "rgba(139,92,246,0.10)" },
-  fname: { textAlign: "center", minHeight: 38, lineHeight: 19 },
+  fname: { textAlign: "center", minHeight: 34, lineHeight: 17 },
   priceRow: { flexDirection: "row", alignItems: "center", gap: S.sm, marginTop: 2 },
   pays: {
     marginTop: S.sm, paddingHorizontal: S.sm, paddingVertical: 3,
     borderRadius: R.pill, borderWidth: 1, borderColor: C.line,
   },
 
-  shotWrap: { width: 68, height: 68, marginBottom: S.sm },
-  shot: { width: 68, height: 68, borderRadius: 34, backgroundColor: C.surfaceHi },
+  shotWrap: { width: 54, height: 54, marginBottom: S.xs },
+  shot: { width: 54, height: 54, borderRadius: 27, backgroundColor: C.surfaceHi },
   shotEmpty: { alignItems: "center", justifyContent: "center" },
-  flag: { position: "absolute", right: -2, bottom: -2, width: 22, height: 15, borderRadius: 3, borderWidth: 1, borderColor: C.bg },
+  flag: { position: "absolute", right: -2, bottom: -2, width: 19, height: 13, borderRadius: 3, borderWidth: 1, borderColor: C.bg },
 
-  methods: { flexDirection: "row", alignItems: "center", marginTop: S.md },
+  methods: { flexDirection: "row", alignItems: "center", marginTop: S.sm },
   chip: { paddingHorizontal: S.md, paddingVertical: 7, borderRadius: R.pill, borderWidth: 1, borderColor: C.lineHi, marginRight: S.xs },
   chipOn: { backgroundColor: C.teal, borderColor: C.teal },
 });

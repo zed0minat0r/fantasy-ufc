@@ -1,7 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { C, R, S, T } from "./theme";
-import { Bout, Label, fmtLine } from "./components";
+import { Bout, Label, SegmentHead, fmtLine } from "./components";
 import { METHODS, potential, potentialCard, winnerPoints } from "./scoring";
 
 const fmtDate = (iso) =>
@@ -13,6 +13,19 @@ function countdown(iso) {
   const d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000);
   if (d > 0) return `${d}d ${h}h`;
   return `${h}h ${Math.floor((ms % 3600000) / 60000)}m`;
+}
+
+/** Keeps the order the bouts arrive in, so Main Card comes before Prelims and
+ *  the main event stays at the top. */
+function groupBySegment(bouts) {
+  const out = [];
+  for (const b of bouts) {
+    const title = b.segment ?? "Card";
+    let g = out.find((x) => x.title === title);
+    if (!g) { g = { title, startsAt: b.startsAt ?? null, bouts: [] }; out.push(g); }
+    g.bouts.push(b);
+  }
+  return out;
 }
 
 const Page = ({ children }) => (
@@ -56,10 +69,20 @@ export function CardScreen({ card, picks, setPicks }) {
         </View>
       </LinearGradient>
 
-      {card.bouts.map((b, i) => (
-        <Bout key={b.id} bout={b} index={i} pick={picks[b.id]}
-          setPick={(p) => setPicks((s) => ({ ...s, [b.id]: p }))} />
-      ))}
+      {/* Grouped into the card's real segments rather than one long pile.
+          groupBy keeps the baked order, which is main event first. */}
+      {groupBySegment(card.bouts).map(({ title, startsAt, bouts }) => {
+        const made = bouts.filter((b) => picks[b.id]?.fighterId).length;
+        return (
+          <View key={title}>
+            <SegmentHead title={title} startsAt={startsAt} made={made} total={bouts.length} />
+            {bouts.map((b) => (
+              <Bout key={b.id} bout={b} index={card.bouts.indexOf(b)} pick={picks[b.id]}
+                setPick={(p) => setPicks((s) => ({ ...s, [b.id]: p }))} />
+            ))}
+          </View>
+        );
+      })}
 
       <Text style={[T.tiny, st.foot]}>
         Points come from the DraftKings line — the longer the odds, the more a correct pick pays.

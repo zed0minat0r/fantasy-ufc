@@ -89,6 +89,12 @@ async function bout(c, eventId) {
   return {
     id: c.id,
     weight: c.type?.text ?? null,
+    // A UFC card is three cards: Main Card, Prelims, Early Prelims, each with
+    // its own start time. ESPN exposes it as cardSegment, and without it the app
+    // is just fourteen fights in a pile.
+    segment: c.cardSegment?.description ?? null,
+    segmentId: c.cardSegment?.id ?? null,
+    startsAt: c.date ?? null,
     // ESPN gives the card order the wrong way round for display: last listed is
     // the main event, so the caller reverses.
     fighters: competitors,
@@ -124,7 +130,9 @@ const main = async () => {
     date: pick.e.date,
     venue: pick.e.venues?.[0]?.fullName ?? null,
     fetchedAt: new Date().toISOString(),
-    // main event first
+    // ESPN lists earliest first, so the main event is last. Reverse the whole
+    // thing and the segments come out Main Card -> Prelims -> Early Prelims,
+    // with the main event at the top, which is the order a card is talked about.
     bouts: bouts.reverse().filter((b) => b.fighters.length === 2),
   };
 
@@ -133,6 +141,8 @@ const main = async () => {
   console.log(`${card.name}  ${card.date}  ->  ${card.bouts.length} bouts`);
   const priced = card.bouts.filter((b) => b.fighters.some((f) => f.moneyLine != null)).length;
   console.log(`   ${priced}/${card.bouts.length} bouts have a moneyline`);
+  const segs = card.bouts.reduce((m, b) => ((m[b.segment ?? "?"] = (m[b.segment ?? "?"] ?? 0) + 1), m), {});
+  console.log("   " + Object.entries(segs).map(([k, v]) => `${k}: ${v}`).join("  ·  "));
   card.bouts.slice(0, 3).forEach((b) =>
     console.log(`   ${b.weight ?? "?"}: ${b.fighters.map((f) =>
       `${f.name}${f.moneyLine != null ? ` (${f.moneyLine > 0 ? "+" : ""}${f.moneyLine})` : ""}`).join("  vs  ")}`));

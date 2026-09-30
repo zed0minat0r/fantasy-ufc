@@ -4,11 +4,14 @@
  "shortName": "UFC 332",
  "date": "2026-10-03T20:00Z",
  "venue": null,
- "fetchedAt": "2026-09-30T01:14:45.006Z",
+ "fetchedAt": "2026-09-30T01:25:10.981Z",
  "bouts": [
   {
    "id": "401912278",
    "weight": "Women's Flyweight",
+   "segment": "Main Card",
+   "segmentId": "173",
+   "startsAt": "2026-10-04T00:00Z",
    "fighters": [
     {
      "id": "4054605",
@@ -45,6 +48,9 @@
   {
    "id": "401907087",
    "weight": "Bantamweight",
+   "segment": "Main Card",
+   "segmentId": "173",
+   "startsAt": "2026-10-04T00:00Z",
    "fighters": [
     {
      "id": "4189320",
@@ -81,6 +87,9 @@
   {
    "id": "401917347",
    "weight": "Lightweight",
+   "segment": "Main Card",
+   "segmentId": "173",
+   "startsAt": "2026-10-04T00:00Z",
    "fighters": [
     {
      "id": "2502364",
@@ -117,6 +126,9 @@
   {
    "id": "401917345",
    "weight": "Welterweight",
+   "segment": "Main Card",
+   "segmentId": "173",
+   "startsAt": "2026-10-04T00:00Z",
    "fighters": [
     {
      "id": "4274796",
@@ -153,6 +165,9 @@
   {
    "id": "401907088",
    "weight": "Middleweight",
+   "segment": "Main Card",
+   "segmentId": "173",
+   "startsAt": "2026-10-04T00:00Z",
    "fighters": [
     {
      "id": "4300149",
@@ -189,6 +204,9 @@
   {
    "id": "401912276",
    "weight": "Flyweight",
+   "segment": "Prelims",
+   "segmentId": "174",
+   "startsAt": "2026-10-03T22:00Z",
    "fighters": [
     {
      "id": "5099732",
@@ -225,6 +243,9 @@
   {
    "id": "401912277",
    "weight": "Middleweight",
+   "segment": "Prelims",
+   "segmentId": "174",
+   "startsAt": "2026-10-03T22:00Z",
    "fighters": [
     {
      "id": "5211225",
@@ -261,6 +282,9 @@
   {
    "id": "401917348",
    "weight": "Bantamweight",
+   "segment": "Prelims",
+   "segmentId": "174",
+   "startsAt": "2026-10-03T22:00Z",
    "fighters": [
     {
      "id": "4895760",
@@ -297,6 +321,9 @@
   {
    "id": "401922306",
    "weight": "Heavyweight",
+   "segment": "Prelims",
+   "segmentId": "174",
+   "startsAt": "2026-10-03T22:00Z",
    "fighters": [
     {
      "id": "3128853",
@@ -333,6 +360,9 @@
   {
    "id": "401912274",
    "weight": "Heavyweight",
+   "segment": "Early Prelims",
+   "segmentId": "175",
+   "startsAt": "2026-10-03T20:00Z",
    "fighters": [
     {
      "id": "3146944",
@@ -369,6 +399,9 @@
   {
    "id": "401917346",
    "weight": "Lightweight",
+   "segment": "Early Prelims",
+   "segmentId": "175",
+   "startsAt": "2026-10-03T20:00Z",
    "fighters": [
     {
      "id": "2335687",
@@ -405,6 +438,9 @@
   {
    "id": "401926808",
    "weight": "Welterweight",
+   "segment": "Early Prelims",
+   "segmentId": "175",
+   "startsAt": "2026-10-03T20:00Z",
    "fighters": [
     {
      "id": "5149961",
@@ -441,6 +477,9 @@
   {
    "id": "401912275",
    "weight": "Middleweight",
+   "segment": "Early Prelims",
+   "segmentId": "175",
+   "startsAt": "2026-10-03T20:00Z",
    "fighters": [
     {
      "id": "4001851",
@@ -477,6 +516,9 @@
   {
    "id": "401907089",
    "weight": "Welterweight",
+   "segment": "Early Prelims",
+   "segmentId": "175",
+   "startsAt": "2026-10-03T20:00Z",
    "fighters": [
     {
      "id": "2504639",
