@@ -139,21 +139,48 @@ const face = (brow, skin) => {
 
 /* ----------------------------------------------------------------- styles */
 
+/** Haircuts, drawn to the CURRENT skull.
+ *
+ *  The head was enlarged in an earlier pass - top y16, sides x80 and x140,
+ *  jaw around y88 - and these were still cut for the old smaller one, so every
+ *  style sat wrong and only the bald head looked right. They all trace the same
+ *  dome now: M80 46 q0-30 30-30 t30 30.
+ */
 export const HAIRCUTS = {
   shaved: () => "",
-  buzz: (c) => `<path d="M82 48q0-28 28-28t28 28v5q-7-15-28-15T82 53z" fill="#${c}"/>`,
-  crop: (c) => `<path d="M82 52q-1-32 28-32t28 32q-5-17-15-19-7 7-21 5t-20 6z" fill="#${c}"/>`,
-  topknot: (c) => `<path d="M82 50q0-26 28-26t28 26q-7-13-28-13T82 50z" fill="#${c}"/>
-                   <circle cx="110" cy="15" r="10" fill="#${c}"/>`,
-  long: (c) => `<path d="M80 54q0-34 30-34t30 34v40l-9-5V58q-9-11-21-11t-21 11v36l-9 5z" fill="#${c}"/>`,
+
+  buzz: (c) => `<path d="M80 48q0-32 30-32t30 32v7q-9-17-30-17t-30 17z" fill="#${c}"/>`,
+
+  crop: (c) => `<path d="M78 48q0-34 32-34t32 34v6q-9-18-32-18t-32 18z" fill="#${c}"/>
+                <path d="M97 19q9 9 27 11" stroke="#${shade(c, 0.66)}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55"/>`,
+
+  topknot: (c) => `<path d="M80 48q0-32 30-32t30 32v5q-9-15-30-15t-30 15z" fill="#${c}"/>
+                   <path d="M104 18q6-4 12 0v6h-12z" fill="#${c}"/>
+                   <circle cx="110" cy="11" r="10" fill="#${c}"/>`,
+
+  // The falls go BEHIND the head (see `.back`), which is the only way they read
+  // as hair. Drawn in front they sit on the cheeks and squeeze the face into a
+  // slot - two passes of that looked like curtains, not a fighter.
+  long: (c) => `<path d="M80 50q0-34 30-34t30 34v4q-9-16-30-16t-30 16z" fill="#${c}"/>`,
 };
 
+/** Layers that belong BEHIND the head. A haircut with hanging length has to be
+ *  drawn before the skull or it covers the face; everything else has none. */
+HAIRCUTS.long.back = (c) => `
+  <path d="M104 28q-38 6-38 42v48q0 8 8 8h18q-8-14-8-36V64q0-22 20-30z" fill="#${c}"/>
+  <path d="M116 28q38 6 38 42v48q0 8-8 8h-18q8-14 8-36V64q0-22-20-30z" fill="#${c}"/>`;
+
+/** Beards, drawn to the same jaw: the face narrows from x80/x140 at the
+ *  cheekbone to about x92/x128 at the chin, bottom around y88. */
 export const BEARDS = {
   none: () => "",
-  stubble: (c) => `<path d="M85 62q3 24 25 24t25-24v8q0 22-25 22T85 70z" fill="#${c}" opacity=".4"/>`,
-  goatee: (c) => `<path d="M102 72h16v9q0 8-8 8t-8-8z" fill="#${c}"/>`,
-  full: (c) => `<path d="M84 58q2 28 26 28t26-28v11q0 28-26 28T84 69z" fill="#${c}"/>
-                <rect x="103" y="74" width="14" height="2.8" rx="1.4" fill="#8a5242"/>`,
+  stubble: (c) => `<path d="M81 58q3 26 29 26t29-26v9q0 24-29 24T81 67z" fill="#${c}" opacity=".38"/>`,
+  goatee: (c) => `<path d="M99 73q11-4 22 0-2 5-11 5t-11-5z" fill="#${c}"/>
+                  <path d="M102 85q8 3 16 0-1 8-8 8t-8-8z" fill="#${c}"/>
+                  <path d="M102 80h16" stroke="#6f3f33" stroke-width="3" stroke-linecap="round"/>`,
+  full: (c) => `<path d="M80 56q2 30 30 30t30-30v12q0 30-30 30T80 68z" fill="#${c}"/>
+                <path d="M102 80h16" stroke="#6f3f33" stroke-width="3.2" stroke-linecap="round"/>`,
+  moustache: (c) => `<path d="M99 73q11-4 22 0-2 5-11 5t-11-5z" fill="#${c}"/>`,
 };
 
 /** Fight shorts. Board-short and vale-tudo lengths, plus a waistband stripe,
@@ -214,6 +241,7 @@ export function fighterSvg(ch, size = 300) {
   ${body(skin)}
   ${shorts(kit)}
   ${gloves(ch.gloveColor ?? kit)}
+  ${cut.back ? cut.back(hairC) : ""}
   ${head(skin)}
   ${face(ch.brow ?? "level", skin)}
   ${beard(hairC)}
