@@ -1,0 +1,458 @@
+{
+ "id": "600061182",
+ "name": "UFC 332: Silva vs. Wang",
+ "shortName": "UFC 332",
+ "date": "2026-10-03T20:00Z",
+ "venue": null,
+ "fetchedAt": "2026-09-30T01:05:46.729Z",
+ "bouts": [
+  {
+   "id": "401912278",
+   "weight": "Women's Flyweight",
+   "fighters": [
+    {
+     "id": "4054605",
+     "name": "Natalia Silva",
+     "short": "N. Silva",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4054605.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+     "record": "20-5-1",
+     "winner": false
+    },
+    {
+     "id": "4215200",
+     "name": "Wang Cong",
+     "short": "W. Cong",
+     "nickname": "The Joker",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4215200.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/chn.png",
+     "record": "10-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401907087",
+   "weight": "Bantamweight",
+   "fighters": [
+    {
+     "id": "4189320",
+     "name": "Deiveson Figueiredo",
+     "short": "D. Figueiredo",
+     "nickname": "Deus da Guerra",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4189320.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+     "record": "25-7-1",
+     "winner": false
+    },
+    {
+     "id": "5144008",
+     "name": "Payton Talbott",
+     "short": "P. Talbott",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5144008.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "11-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401917347",
+   "weight": "Lightweight",
+   "fighters": [
+    {
+     "id": "2502364",
+     "name": "King Green",
+     "short": "K. Green",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2502364.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "36-17-1",
+     "winner": false
+    },
+    {
+     "id": "5074131",
+     "name": "Esteban Ribovics",
+     "short": "E. Ribovics",
+     "nickname": "El Gringo",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/arg.png",
+     "record": "16-3-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401917345",
+   "weight": "Welterweight",
+   "fighters": [
+    {
+     "id": "4274796",
+     "name": "Roberto Soldić",
+     "short": "R. Soldić",
+     "nickname": "Robocop",
+     "headshot": null,
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/cro.png",
+     "record": "21-4-0",
+     "winner": false
+    },
+    {
+     "id": "4612580",
+     "name": "Khaos Williams",
+     "short": "K. Williams",
+     "nickname": "The Oxfighter",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4612580.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "16-5-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401907088",
+   "weight": "Middleweight",
+   "fighters": [
+    {
+     "id": "4300149",
+     "name": "Roman Kopylov",
+     "short": "R. Kopylov",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4300149.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
+     "record": "15-5-0",
+     "winner": false
+    },
+    {
+     "id": "5218421",
+     "name": "Ateba Gautier",
+     "short": "A. Gautier",
+     "nickname": "The Storm",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5218421.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/cmr.png",
+     "record": "11-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401912276",
+   "weight": "Flyweight",
+   "fighters": [
+    {
+     "id": "5099732",
+     "name": "Alden Coria",
+     "short": "A. Coria",
+     "nickname": "Cobra",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5099732.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "13-3-0",
+     "winner": false
+    },
+    {
+     "id": "5289578",
+     "name": "Imanol Rodriguez",
+     "short": "I. Rodriguez",
+     "nickname": "Himan",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5289578.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png",
+     "record": "7-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401912277",
+   "weight": "Middleweight",
+   "fighters": [
+    {
+     "id": "5211225",
+     "name": "Andrey Pulyaev",
+     "short": "A. Pulyaev",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5211225.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
+     "record": "10-5-0",
+     "winner": false
+    },
+    {
+     "id": "5292022",
+     "name": "Damian Pinas",
+     "short": "D. Pinas",
+     "nickname": "The Baba Yaga",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5292022.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/aru.png",
+     "record": "10-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401917348",
+   "weight": "Bantamweight",
+   "fighters": [
+    {
+     "id": "4895760",
+     "name": "Marcus McGhee",
+     "short": "M. McGhee",
+     "nickname": "The Maniac",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4895760.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "11-2-0",
+     "winner": false
+    },
+    {
+     "id": "5080883",
+     "name": "Bernardo Sopaj",
+     "short": "B. Sopaj",
+     "nickname": "The Lion King",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5080883.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/alb.png",
+     "record": "13-3-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401922306",
+   "weight": "Heavyweight",
+   "fighters": [
+    {
+     "id": "3128853",
+     "name": "Anthony Wint",
+     "short": "A. Wint",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/3128853.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "8-0-0",
+     "winner": false
+    },
+    {
+     "id": "5450121",
+     "name": "Lucas Armand",
+     "short": "L. Armand",
+     "nickname": "Do or Die",
+     "headshot": null,
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "6-0-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401912274",
+   "weight": "Heavyweight",
+   "fighters": [
+    {
+     "id": "3146944",
+     "name": "Johnny Walker",
+     "short": "J. Walker",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/3146944.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+     "record": "22-10-0",
+     "winner": false
+    },
+    {
+     "id": "5060505",
+     "name": "Mick Parkin",
+     "short": "M. Parkin",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5060505.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/eng.png",
+     "record": "10-1-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401917346",
+   "weight": "Lightweight",
+   "fighters": [
+    {
+     "id": "2335687",
+     "name": "Rafael Dos Anjos",
+     "short": "R. Dos Anjos",
+     "nickname": null,
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2335687.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+     "record": "32-17-0",
+     "winner": false
+    },
+    {
+     "id": "4018757",
+     "name": "Alexander Hernandez",
+     "short": "A. Hernandez",
+     "nickname": "El Gran Chango",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4018757.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "18-9-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401926808",
+   "weight": "Welterweight",
+   "fighters": [
+    {
+     "id": "5149961",
+     "name": "Jacobe Smith",
+     "short": "J. Smith",
+     "nickname": "Cobe",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5149961.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "12-0-0",
+     "winner": false
+    },
+    {
+     "id": "5311402",
+     "name": "Bruce Whitehead",
+     "short": "B. Whitehead",
+     "nickname": "The Goose",
+     "headshot": null,
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "8-2-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401912275",
+   "weight": "Middleweight",
+   "fighters": [
+    {
+     "id": "4001851",
+     "name": "Marvin Vettori",
+     "short": "M. Vettori",
+     "nickname": "The Italian Dream",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4001851.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/ita.png",
+     "record": "19-10-1",
+     "winner": false
+    },
+    {
+     "id": "4412813",
+     "name": "Ismail Naurdiev",
+     "short": "I. Naurdiev",
+     "nickname": "The Austrian Wonderboy",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/4412813.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/mar.png",
+     "record": "25-8-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  },
+  {
+   "id": "401907089",
+   "weight": "Welterweight",
+   "fighters": [
+    {
+     "id": "2504639",
+     "name": "Court McGee",
+     "short": "C. McGee",
+     "nickname": "The Crusher",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/2504639.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "23-14-0",
+     "winner": false
+    },
+    {
+     "id": "5290958",
+     "name": "Eric Nolan",
+     "short": "E. Nolan",
+     "nickname": "Nightime",
+     "headshot": "https://a.espncdn.com/i/headshots/mma/players/full/5290958.png",
+     "flag": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+     "record": "8-5-0",
+     "winner": false
+    }
+   ],
+   "finished": false,
+   "result": {
+    "short": null,
+    "round": 0,
+    "time": "-"
+   }
+  }
+ ]
+}

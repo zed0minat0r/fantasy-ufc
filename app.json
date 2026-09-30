@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "fantasy-ufc",
+    "name": "Fantasy UFC",
     "slug": "fantasy-ufc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true
     },
@@ -18,7 +18,16 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "output": "single",
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "experiments": {
+      "baseUrl": "/fantasy-ufc"
+    },
+    "backgroundColor": "#0A0712"
   }
 }
