@@ -87,7 +87,11 @@ const head = (skin) => {
   return `
   <g>
     <path d="M110 16q30 0 30 28v15q0 15-8 24t-22 9q-14 0-22-9t-8-24V44q0-28 30-28z" fill="${s}"/>
-    <path d="M90 62q2 14 8 20h24q6-6 8-20v6q0 16-9 23t-11 0-11 0-9-23z" fill="${sh}" opacity=".3"/>
+    <!-- ONE shadow plane down the off-light side, traced on the skull itself.
+         The shape that was here was a small polygon across the jaw and at 20x
+         it read as facet seams on the cheeks. Light comes from the left, same
+         as the torso. -->
+    <path d="M110 16q30 0 30 28v15q0 15-8 24t-22 9z" fill="${sh}" opacity=".16"/>
     <ellipse cx="82" cy="56" rx="5" ry="8" fill="${sh}"/>
     <ellipse cx="138" cy="56" rx="5" ry="8" fill="${sh}"/>
   </g>`;
@@ -118,8 +122,8 @@ const face = (brow, skin) => {
   };
   return `
   <g>
-    <path d="M86 56q3 13 10 18l-8 3q-6-7-6-18z" fill="${dk}" opacity=".26"/>
-    <path d="M134 56q-3 13-10 18l8 3q6-7 6-18z" fill="${dk}" opacity=".26"/>
+    <path d="M88 61q4 10 9 14" stroke="${dk}" stroke-width="3" fill="none" opacity=".22" stroke-linecap="round"/>
+    <path d="M132 61q-4 10-9 14" stroke="${dk}" stroke-width="3" fill="none" opacity=".22" stroke-linecap="round"/>
     <path d="M93 78q7 8 17 8t17-8q-4 11-17 11t-17-11z" fill="${dk}" opacity=".2"/>
 
     ${brows[brow] ?? brows.level}
@@ -146,22 +150,34 @@ const face = (brow, skin) => {
  *  style sat wrong and only the bald head looked right. They all trace the same
  *  dome now: M80 46 q0-30 30-30 t30 30.
  */
+/** The skull is  M80 44 q0-28 30-28 t30 28 . Every hair dome traces that curve
+ *  3 units OUTSIDE it, from one shared constant.
+ *
+ *  Matching the skull exactly is not good enough: the two quadratics share a
+ *  control point, so the head's wins by about a unit the whole way round and
+ *  prints a skin-coloured rim along the top of the hair. Matt: "you can see the
+ *  tops of fighters heads through the hair." Measured at 20x on a crown crop -
+ *  buzz, topknot and long all had it, crop did not, and crop was the only one
+ *  whose dome happened to sit wider.
+ */
+const DOME = "M77 46q0-33 33-33t33 33";
+
 export const HAIRCUTS = {
   shaved: () => "",
 
-  buzz: (c) => `<path d="M80 48q0-32 30-32t30 32v7q-9-17-30-17t-30 17z" fill="#${c}"/>`,
+  buzz: (c) => `<path d="${DOME}v9q-9-17-33-17t-33 17z" fill="#${c}"/>`,
 
-  crop: (c) => `<path d="M78 48q0-34 32-34t32 34v6q-9-18-32-18t-32 18z" fill="#${c}"/>
-                <path d="M97 19q9 9 27 11" stroke="#${shade(c, 0.66)}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55"/>`,
+  crop: (c) => `<path d="${DOME}v11q-9-20-33-20t-33 20z" fill="#${c}"/>
+                <path d="M96 18q10 9 28 11" stroke="#${shade(c, 0.66)}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55"/>`,
 
-  topknot: (c) => `<path d="M80 48q0-32 30-32t30 32v5q-9-15-30-15t-30 15z" fill="#${c}"/>
-                   <path d="M104 18q6-4 12 0v6h-12z" fill="#${c}"/>
-                   <circle cx="110" cy="11" r="10" fill="#${c}"/>`,
+  topknot: (c) => `<path d="${DOME}v7q-9-15-33-15t-33 15z" fill="#${c}"/>
+                   <path d="M104 14q6-4 12 0v6h-12z" fill="#${c}"/>
+                   <circle cx="110" cy="10" r="10" fill="#${c}"/>`,
 
   // The falls go BEHIND the head (see `.back`), which is the only way they read
   // as hair. Drawn in front they sit on the cheeks and squeeze the face into a
   // slot - two passes of that looked like curtains, not a fighter.
-  long: (c) => `<path d="M80 50q0-34 30-34t30 34v4q-9-16-30-16t-30 16z" fill="#${c}"/>`,
+  long: (c) => `<path d="${DOME}v6q-9-16-33-16t-33 16z" fill="#${c}"/>`,
 };
 
 /** Layers that belong BEHIND the head. A haircut with hanging length has to be
@@ -176,7 +192,7 @@ export const BEARDS = {
   none: () => "",
   stubble: (c) => `<path d="M81 58q3 26 29 26t29-26v9q0 24-29 24T81 67z" fill="#${c}" opacity=".38"/>`,
   goatee: (c) => `<path d="M99 73q11-4 22 0-2 5-11 5t-11-5z" fill="#${c}"/>
-                  <path d="M102 85q8 3 16 0-1 8-8 8t-8-8z" fill="#${c}"/>
+                  <path d="M104 83q6 3 12 0-1 6-6 6t-6-6z" fill="#${c}"/>
                   <path d="M102 80h16" stroke="#6f3f33" stroke-width="3" stroke-linecap="round"/>`,
   full: (c) => `<path d="M80 56q2 30 30 30t30-30v12q0 30-30 30T80 68z" fill="#${c}"/>
                 <path d="M102 80h16" stroke="#6f3f33" stroke-width="3.2" stroke-linecap="round"/>`,
